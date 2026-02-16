@@ -10,6 +10,11 @@ void Ejercicio4();
 void ejercicio5();
 void ejercicio6();
 void ejercicio7();
+void ejercicio8();
+void ejercicio9();
+void ejercicio10();
+void ejercicio11();
+void  ejercicio12();
 
 bool validateInput();
 

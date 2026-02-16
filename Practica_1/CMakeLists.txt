@@ -14,6 +14,11 @@ add_executable(Practica_1 main.cpp
     Ejercicio_5.cpp
     Ejercicio_6.cpp
     Ejercicio_7.cpp
+    Ejercicio_8.cpp
+    Ejercicio_9.cpp
+    Ejercicio_10.cpp
+    Ejercicio_11.cpp
+    Ejercicio_12.cpp
 )
 
 include(GNUInstallDirs)
