@@ -191,12 +191,13 @@ int main()
             cout << " Problema #5                                               " << endl;
             cout << "==========================================" << endl;
 
-            string    numberN = "";
-            short     indexN = 0;
+            string                numberN = "";
+            unsigned short  sum = 0;
+
 
             do {
-
                 bool    hasletter = false;
+                short     indexN = 0;
 
                 cout << "Ingrese un numero entero impar: ";
                 getline(cin, numberN);
@@ -211,33 +212,62 @@ int main()
                     }
                 }
 
-
                 if (hasletter) continue;
 
-                short   arrayOfDigits[indexN];
-
-                for (short i = 0; i < indexN; i++){
-                    arrayOfDigits[i] = (numberN[i] - '0') * 1;
-
-                    short  numberOfCeros = indexN - (i + 1);
-
-                    if (numberOfCeros == 1) arrayOfDigits[i] = arrayOfDigits[i] * 10;
-                    else if (numberOfCeros == 2) arrayOfDigits[i] = arrayOfDigits[i] * 100;
-                    else if (numberOfCeros == 3) arrayOfDigits[i] = arrayOfDigits[i] * 1000;
-                    else if (numberOfCeros == 4) arrayOfDigits[i] = arrayOfDigits[i] * 10000;
-
-                    cout << arrayOfDigits[i] << endl;
+                if (indexN >= 4 ){
+                    cout << "Solo numeros de 1 a 3 digitos, vuelva a intentar." << endl;
+                    continue;
                 }
 
+                sum = 0;
 
+                for (short i = 0; i < indexN; i++){
+                    if (indexN - i == 4) sum = sum +  (numberN[i] - '0') * 1000;
+                    else  if (indexN - i == 3) sum = sum +  (numberN[i] - '0') * 100;
+                    else  if (indexN - i == 2) sum = sum +  (numberN[i] - '0') * 10;
+                    else  if (indexN - i == 1) sum = sum +  (numberN[i] - '0') * 1;
+                }
 
+                if ((sum & 1) == 0) {
+                    cout << "El numeo " << sum << " no es impar, vuelva a intentar." << endl;
+                    continue;
+                }
 
+                break;
 
             }while (true);
 
+            for (unsigned short i = 0; i <= sum; i++){ // abajo arriba
+                if ((i & 1) == 1){
+                    unsigned short  whiteSpaces = (sum - i) / 2;
+                    unsigned short  numChaInLine = sum - (whiteSpaces * 2);
 
+                    for (unsigned short f = 0; f < whiteSpaces; f++) cout << " ";
+                    for (unsigned short f = 0; f < numChaInLine; f++) cout << "*";
 
+                    cout << endl;
+                }
+            }
 
+            for (unsigned short i = sum - 1; i > 0; i--){ //arriba abajo
+                if ((i & 1) == 1){
+                    unsigned short  whiteSpaces = (sum - i) / 2;
+                    unsigned short  numChaInLine = sum - (whiteSpaces * 2);
+
+                    for (unsigned short f = 0; f < whiteSpaces; f++) cout << " ";
+                    for (unsigned short f = 0; f < numChaInLine; f++) cout << "*";
+
+                    cout << endl;
+                }
+            }
+        }
+        //==============================================================
+        //==============================================================
+        //==============================================================
+        else if (option == "3"){
+            cout << "==========================================" << endl;
+            cout << " Problema #7                                               " << endl;
+            cout << "==========================================" << endl;
 
         }
     } while (true);
