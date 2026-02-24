@@ -269,6 +269,68 @@ int main()
             cout << " Problema #7                                               " << endl;
             cout << "==========================================" << endl;
 
+            string               numN;
+            unsigned short  sum = 0;
+
+            do {
+                cout << "Ingrese un numero entero: ";
+                getline(cin, numN);
+
+                bool      hasletter = false;
+                short     indexN = 0;
+
+                for (char  c : numN){
+                    indexN++;
+
+                    if (c < 48 || c > 57){
+                        cout << "Solo se permiten numeros, vuelva a intentar." << endl;
+                        hasletter = true;
+                        break;
+                    }
+                }
+
+                if (hasletter) continue;
+
+                if (indexN >= 4 ){
+                    cout << "Solo numeros de 1 a 3 digitos, vuelva a intentar." << endl;
+                    continue;
+                }
+
+                for (short i = 0; i < indexN; i++){
+                    if (indexN - i == 4) sum = sum +  (numN[i] - '0') * 1000;
+                    else  if (indexN - i == 3) sum = sum +  (numN[i] - '0') * 100;
+                    else  if (indexN - i == 2) sum = sum +  (numN[i] - '0') * 10;
+                    else  if (indexN - i == 1) sum = sum +  (numN[i] - '0') * 1;
+                }
+
+                break;
+
+            }while(true);
+
+            unsigned short  number1 = 1;
+            unsigned short  number2 = 1;
+            unsigned short  auxNumber;
+            unsigned short  sumOfPars = 0;
+
+            for (unsigned  short i = 0; i < sum; i++){
+                auxNumber = number1;
+                number1 = number1 + number2;
+                number2 =    auxNumber;
+
+                if (number1 < sum  && ((number1 & 1) == 0)) sumOfPars += number1;
+
+                if (number1 >= sum) break;
+            }
+
+            cout << "El resultado de la suma es: " << sumOfPars << endl;
+
+        }
+        else if (option == "4"){
+            cout << "==========================================" << endl;
+            cout << " Problema #9                                              " << endl;
+            cout << "==========================================" << endl;
+
+
         }
     } while (true);
 
