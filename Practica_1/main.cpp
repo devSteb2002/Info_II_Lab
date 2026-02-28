@@ -30,7 +30,7 @@ int main()
     do {
 
         cout << "Ingrese una opcion: ";
-        getline(cin, option);
+        cin >> option;
 
         unsigned short    index = 0;
         bool                    areDigits = true;
@@ -89,7 +89,7 @@ int main()
                 if (!isValidMonth){  // primero validamos que el mes sea correcto
 
                     cout << "Ingrese un mes: ";
-                    getline(cin, month);
+                    cin >> month;
 
                     for (char c : month){
                         indString++;
@@ -125,7 +125,7 @@ int main()
                 else {   // validamos el dia
 
                     cout << "Ingrese el dia: ";
-                    getline(cin, day);
+                    cin >> day;
 
                     for (char c : day){
                         indString++;
@@ -200,7 +200,7 @@ int main()
                 short     indexN = 0;
 
                 cout << "Ingrese un numero entero impar: ";
-                getline(cin, numberN);
+                cin >> numberN;
 
                 for (char  c : numberN){
                     indexN++;
@@ -274,7 +274,7 @@ int main()
 
             do {
                 cout << "Ingrese un numero entero: ";
-                getline(cin, numN);
+                cin >> numN;
 
                 bool      hasletter = false;
                 short     indexN = 0;
@@ -310,7 +310,7 @@ int main()
             unsigned short  number1 = 1;
             unsigned short  number2 = 1;
             unsigned short  auxNumber;
-            unsigned short  sumOfPars = 0;
+            unsigned int  sumOfPars = 0;
 
             for (unsigned  short i = 0; i < sum; i++){
                 auxNumber = number1;
@@ -330,8 +330,300 @@ int main()
             cout << " Problema #9                                              " << endl;
             cout << "==========================================" << endl;
 
+            string       numN;
+
+            do {
+                cout << "Ingrese un numero entero: ";
+                cin >> numN;
+
+                bool      hasletter = false;
+                short     indexN = 0;
+
+                for (char  c : numN){
+                    indexN++;
+
+                    if (c < 48 || c > 57){
+                        cout << "Solo se permiten numeros, vuelva a intentar." << endl;
+                        hasletter = true;
+                        break;
+                    }
+                }
+
+                if (hasletter) continue;
+
+
+                break;
+
+            }while(true);
+
+            unsigned  short  totalSum = 0;
+
+            for (char c : numN){
+                short                number = (c - '0') * 1;
+                unsigned int potence = number;
+
+                for (short i = 1; i < number; i++){
+                    potence *= number;
+                }
+
+                totalSum += potence;
+            }
+
+            cout << "El resultado de la suma es: " << totalSum << endl;
+        }
+        else if (option == "5"){
+            cout << "==========================================" << endl;
+            cout << " Problema #11                                              " << endl;
+            cout << "==========================================" << endl;
+
+            string               numN;
+            unsigned short  sum = 0;
+
+            do {
+                cout << "Ingrese un numero entero: ";
+                cin >> numN;
+
+                bool      hasletter = false;
+                short     indexN = 0;
+
+                for (char  c : numN){
+                    indexN++;
+
+                    if (c < 48 || c > 57){
+                        cout << "Solo se permiten numeros, vuelva a intentar." << endl;
+                        hasletter = true;
+                        break;
+                    }
+                }
+
+                if (hasletter) continue;
+
+                if (indexN >= 4 ){
+                    cout << "Solo numeros de 1 a 3 digitos, vuelva a intentar." << endl;
+                    continue;
+                }
+
+                for (short i = 0; i < indexN; i++){
+                    if (indexN - i == 4) sum = sum +  (numN[i] - '0') * 1000;
+                    else  if (indexN - i == 3) sum = sum +  (numN[i] - '0') * 100;
+                    else  if (indexN - i == 2) sum = sum +  (numN[i] - '0') * 10;
+                    else  if (indexN - i == 1) sum = sum +  (numN[i] - '0') * 1;
+                }
+
+                break;
+
+            }while(true);
+
+            //MCM(a, b) = |a x b| / MCD(a, b)
+
+            unsigned int  result = 1;
+
+            for (unsigned short i = 1; i <= sum; i++){
+                unsigned int nextN = i + 1;
+
+                if (nextN < (sum + 1)){
+
+                   unsigned int  b = nextN;
+                   unsigned int   a = result;
+
+                    while (b != 0){ // algoritmo de euclides
+                        unsigned int temp = b;
+                        b = a % b;
+                        a = temp;
+                    }
+
+                    result = (result * nextN) / a;
+
+                }
+            }
+
+            cout <<  "El minimo comun multiplo es: " << result << endl;
 
         }
+        else if (option == "6"){
+            cout << "==========================================" << endl;
+            cout << " Problema #13                                              " << endl;
+            cout << "==========================================" << endl;
+
+            string               numN;
+            unsigned int  sum = 0;
+
+            do {
+                cout << "Ingrese un numero entero: ";
+                cin >> numN;
+
+                bool      hasletter = false;
+                short     indexN = 0;
+
+                for (char  c : numN){
+                    indexN++;
+
+                    if (c < 48 || c > 57){
+                        cout << "Solo se permiten numeros, vuelva a intentar." << endl;
+                        hasletter = true;
+                        break;
+                    }
+                }
+
+                if (hasletter) continue;
+
+                if (indexN >= 5 ){
+                    cout << "Solo numeros de 1 a 3 digitos, vuelva a intentar." << endl;
+                    continue;
+                }
+
+                for (short i = 0; i < indexN; i++){
+                     if (indexN - i == 5) sum = sum +  (numN[i] - '0') * 10000;
+                    else if (indexN - i == 4) sum = sum +  (numN[i] - '0') * 1000;
+                    else  if (indexN - i == 3) sum = sum +  (numN[i] - '0') * 100;
+                    else  if (indexN - i == 2) sum = sum +  (numN[i] - '0') * 10;
+                    else  if (indexN - i == 1) sum = sum +  (numN[i] - '0') * 1;
+                }
+
+                break;
+
+            }while(true);
+
+            unsigned int sumPrimes = 0;
+
+            for (unsigned int  i = 2; i < sum; i++){
+
+                short numberOfDividers = 0;
+
+                if (i == 2){
+                    sumPrimes += i;
+                    continue;
+                }
+
+                for (unsigned int f = 1; f <= i; f++){
+
+                    if (i % f == 0 && (i & 1) == 1){
+                        numberOfDividers ++;
+                    }
+                }
+
+                if (numberOfDividers == 2) sumPrimes += i;
+            }
+
+            cout << "El resultado de la suma es: " << sumPrimes << endl;
+        }
+        else if (option == "7"){
+            cout << "==========================================" << endl;
+            cout << " Problema #15                                              " << endl;
+            cout << "==========================================" << endl;
+
+            string                numberN = "";
+            unsigned int  sum = 0;
+
+
+            do {
+                bool    hasletter = false;
+                short     indexN = 0;
+
+                cout << "Ingrese un numero entero impar: ";
+                cin >> numberN;
+
+                for (char  c : numberN){
+                    indexN++;
+
+                    if (c < 48 || c > 57){
+                        cout << "Solo se permiten numeros, vuelva a intentar." << endl;
+                        hasletter = true;
+                        break;
+                    }
+                }
+
+                if (hasletter) continue;
+
+                if (indexN >= 4 ){
+                    cout << "Solo numeros de 1 a 3 digitos, vuelva a intentar." << endl;
+                    continue;
+                }
+
+                sum = 0;
+
+                for (short i = 0; i < indexN; i++){
+                    if (indexN - i == 4) sum = sum +  (numberN[i] - '0') * 1000;
+                    else  if (indexN - i == 3) sum = sum +  (numberN[i] - '0') * 100;
+                    else  if (indexN - i == 2) sum = sum +  (numberN[i] - '0') * 10;
+                    else  if (indexN - i == 1) sum = sum +  (numberN[i] - '0') * 1;
+                }
+
+                if ((sum & 1) == 0) {
+                    cout << "El numeo " << sum << " no es impar, vuelva a intentar." << endl;
+                    continue;
+                }
+
+                break;
+            }while (true);
+
+            unsigned int        n = sum * sum;
+            unsigned int        array[sum][sum];
+            unsigned short    row = 0;
+            unsigned short    col = 0;
+            unsigned short    rowEnd = sum;
+            unsigned short    colEnd = sum;
+
+            while (n > 0){
+
+                //fila  arriba
+                for ( int i = colEnd -1; i >= col; i--){
+                    array[row][i] = n;
+                    n--;
+                }
+
+                row++;
+
+                //columna izquierda
+                for (int i = row; i < rowEnd; i++){
+                    array[i][col] = n;
+                    n--;
+                }
+                col++;
+
+                //fila abajo
+                for (int i = col; i < colEnd; i++){
+                    array[rowEnd - 1][i] = n;
+                    n--;
+                }
+
+                rowEnd--;
+
+                //columna derecha
+                for (int i = rowEnd - 1; i >= row; i--){
+                    array[i][colEnd - 1] = n;
+                    n--;
+                }
+
+                colEnd--;
+            }
+
+            unsigned int   indDiaRigth = 0, indDiaLeft = sum - 1;
+            unsigned int   sumDiagonals = 0;
+
+            //calcular valores de la diagonla
+            for (int i = 0; i < sum; i++){
+
+                unsigned const int  position1 = array[i][indDiaRigth];
+                unsigned const int  position2 = array[i][indDiaLeft];
+
+                if (position1 == position2) sumDiagonals += position1;
+                else sumDiagonals += position1 + position2;
+
+                indDiaRigth++;
+                indDiaLeft--;
+            }
+
+
+            for (int i = 0 ; i < sum; i++){
+                for (int f = 0 ;  f < sum; f++) cout << array[i][f] << "  ";
+                cout << endl << endl;
+            }
+
+            cout << "En una espiral de " << sum << "x" << sum <<", la suma es: " << sumDiagonals << endl;
+
+        }
+
     } while (true);
 
     return 0;
