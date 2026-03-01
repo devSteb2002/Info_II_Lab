@@ -63,15 +63,6 @@ int main()
             cout << " Problema #3                                               " << endl;
             cout << "==========================================" << endl;
 
-           /* Problema 3. Escriba un programa que debe leer un mes y un día de dicho mes para luego decir
-                si esa combinación de mes y día son válidos. El caso más especial es el 29 de febrero, en dicho caso
-                        imprimir posiblemente año bisiesto.
-                    Nota: el formato de salida debe ser:
-                                                           14 es un mes invalido.
-                                                           31/4 es una fecha invalida.
-                      27/4 es una fecha valida.
-                                                   29/2 es valida en bisiesto. */
-
             string                month = "";
             string                day =  "";
             bool                   isValidMonth = false;
@@ -214,8 +205,8 @@ int main()
 
                 if (hasletter) continue;
 
-                if (indexN >= 4 ){
-                    cout << "Solo numeros de 1 a 3 digitos, vuelva a intentar." << endl;
+                if (indexN > 4 ){
+                    cout << "Solo numeros de 1 a 4 digitos, vuelva a intentar." << endl;
                     continue;
                 }
 
@@ -291,8 +282,8 @@ int main()
 
                 if (hasletter) continue;
 
-                if (indexN >= 4 ){
-                    cout << "Solo numeros de 1 a 3 digitos, vuelva a intentar." << endl;
+                if (indexN > 4 ){
+                    cout << "Solo numeros de 1 a 4 digitos, vuelva a intentar." << endl;
                     continue;
                 }
 
@@ -398,8 +389,8 @@ int main()
 
                 if (hasletter) continue;
 
-                if (indexN >= 4 ){
-                    cout << "Solo numeros de 1 a 3 digitos, vuelva a intentar." << endl;
+                if (indexN > 4 ){
+                    cout << "Solo numeros de 1 a 4 digitos, vuelva a intentar." << endl;
                     continue;
                 }
 
@@ -467,8 +458,8 @@ int main()
 
                 if (hasletter) continue;
 
-                if (indexN >= 5 ){
-                    cout << "Solo numeros de 1 a 3 digitos, vuelva a intentar." << endl;
+                if (indexN > 5 ){
+                    cout << "Solo numeros de 1 a 5 digitos, vuelva a intentar." << endl;
                     continue;
                 }
 
@@ -535,8 +526,8 @@ int main()
 
                 if (hasletter) continue;
 
-                if (indexN >= 4 ){
-                    cout << "Solo numeros de 1 a 3 digitos, vuelva a intentar." << endl;
+                if (indexN > 4 ){
+                    cout << "Solo numeros de 1 a 4 digitos, vuelva a intentar." << endl;
                     continue;
                 }
 
@@ -621,6 +612,73 @@ int main()
             }
 
             cout << "En una espiral de " << sum << "x" << sum <<", la suma es: " << sumDiagonals << endl;
+
+        }
+        else if (option == "8"){
+            cout << "==========================================" << endl;
+            cout << " Problema #17                                              " << endl;
+            cout << "==========================================" << endl;
+
+            string               numN;
+            unsigned int     sum = 0;
+
+            do {
+                cout << "Ingrese un numero entero: ";
+                cin >> numN;
+
+                bool      hasletter = false;
+                short     indexN = 0;
+
+                for (char  c : numN){
+                    indexN++;
+
+                    if (c < 48 || c > 57){
+                        cout << "Solo se permiten numeros, vuelva a intentar." << endl;
+                        hasletter = true;
+                        break;
+                    }
+                }
+
+                if (hasletter) continue;
+
+                if (indexN > 5 ){
+                    cout << "Solo numeros de 1 a 5 digitos, vuelva a intentar." << endl;
+                    continue;
+                }
+
+                for (short i = 0; i < indexN; i++){
+                    if (indexN - i == 5) sum = sum +  (numN[i] - '0') * 10000;
+                    else if (indexN - i == 4) sum = sum +  (numN[i] - '0') * 1000;
+                    else  if (indexN - i == 3) sum = sum +  (numN[i] - '0') * 100;
+                    else  if (indexN - i == 2) sum = sum +  (numN[i] - '0') * 10;
+                    else  if (indexN - i == 1) sum = sum +  (numN[i] - '0') * 1;
+                }
+
+                break;
+
+            }while(true);
+
+
+            unsigned int  numberInPosition, numOfDivider = 0;
+            unsigned int  n = 1;
+
+            do {
+                numberInPosition = n * (n + 1) / 2;
+
+                int count = 0;;
+                for (int i = 1; i <= numberInPosition; i++){
+                    if (numberInPosition % i == 0) count++;
+                }
+                numOfDivider = count;
+
+
+                if (numOfDivider > sum) break;
+
+                n++;
+
+            } while (true);
+
+            cout << "El numero es: " << numberInPosition  << " que tiene "  << numOfDivider << " divisores." << endl;
 
         }
 
