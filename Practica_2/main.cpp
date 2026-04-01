@@ -52,7 +52,9 @@ int main()
         else if (option == 4)  Problem6();
         else if (option == 5) problem7();
         else if (option == 6) Problem9();
-
+        else if (option == 7) Problem10();
+        else if (option == 8) Problem11();
+        else if (option == 9) Problem13();
 
     } while (true);
 
