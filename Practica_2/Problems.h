@@ -11,5 +11,8 @@ void problem5();
 void Problem6();
 void problem7();
 void Problem9();
+void Problem10();
+void Problem11();
+void Problem13();
 
 #endif // PROBLEMS_H
