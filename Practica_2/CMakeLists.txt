@@ -15,7 +15,9 @@ add_executable(Practica_2 main.cpp
     problem9.cpp
     problem10.cpp
     problem11.cpp
-    problem13.cpp)
+    problem13.cpp
+    problem15.cpp
+    problem17.cpp)
 
 include(GNUInstallDirs)
 install(TARGETS Practica_2

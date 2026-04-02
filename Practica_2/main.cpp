@@ -55,6 +55,8 @@ int main()
         else if (option == 7) Problem10();
         else if (option == 8) Problem11();
         else if (option == 9) Problem13();
+        else if (option == 10) Problem15();
+        else if (option == 11) Problem17();
 
     } while (true);
 
