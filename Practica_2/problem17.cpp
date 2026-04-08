@@ -1,5 +1,7 @@
 #include "Problems.h"
 
+//https://www.tinkercad.com/things/4TCmoJLty2P-problema-17
+
 using namespace std;
 
 void askNumber(int &number);
