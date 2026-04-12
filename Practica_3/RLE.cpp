@@ -30,7 +30,7 @@ void readFile(string name, string type, string *&compresions, int &rows){
     try {
 
         File.exceptions(ifstream::badbit);
-        File.open("Texto.txt");
+        File.open(name + "." + type);
 
         if (!File.is_open()){
             cout << "No se pudo abrir el archivo" << endl;

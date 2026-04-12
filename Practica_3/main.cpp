@@ -38,21 +38,23 @@ int main()
 
     } while (true);
 
-    string *dataToEncrypt = nullptr;
+    string *dataToEncryptRLE = nullptr;
+    string ***dataToEncryptLZ78 = nullptr;
     int rows;
 
     if (option == "1"){
-        dataToEncrypt = initRLE(rows);
+        dataToEncryptRLE = initRLE(rows);
     } else {
-
+        dataToEncryptLZ78 = initLZ78(rows, "encrypt");
     }
 
-    for (int i = 0; i < rows; i++){
-        cout << dataToEncrypt[i] <<  " --- " << endl;
+    cout << "hola";
+    /*for (int i = 0; i < rows; i++){
+        cout << dataToEncryptRLE[i] <<  " --- " << endl;
     }
 
 
-    delete[] dataToEncrypt;
+    delete[] dataToEncryptRLE; */
 
     return 0;
 }

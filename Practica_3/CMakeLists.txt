@@ -7,7 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(Practica_3 main.cpp
     Definition.h
-    RLE.cpp)
+    RLE.cpp
+    LZ78.cpp)
 
 include(GNUInstallDirs)
 install(TARGETS Practica_3
