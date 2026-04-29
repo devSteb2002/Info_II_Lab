@@ -5,9 +5,11 @@ using namespace std;
 
 string* initRLE(int &rows_);
 void readFile(string name, string type,  string *& compresions, int & rows);
+void saveData(string type, string *dataToEncryptRLE, int &rows);
 void comprimRLe(string chain,  string *& compresions, int* index);
 void descomRLe(string &chain);
 void addElement(string *& compresions, int * index, string* value);
+std::string* getDataEncrypt();
 
 string *initRLE(int &rows_ ){
     string *compresions = nullptr;
@@ -15,9 +17,6 @@ string *initRLE(int &rows_ ){
 
     readFile("Texto", "txt", compresions, rows);
 
-    for (int i = 0; i < rows; i++){
-        descomRLe(compresions[i]);
-    }
     rows_ = rows;
     return compresions;
 }
@@ -54,6 +53,7 @@ void readFile(string name, string type, string *&compresions, int &rows){
 void comprimRLe(string chain, string *& compresions, int* index){
     string comprim = "";
 
+
     for (short i = 0; i < chain.length(); i++){
         int count = 1;
 
@@ -62,8 +62,9 @@ void comprimRLe(string chain, string *& compresions, int* index){
             i++;
         }
 
-        comprim += to_string(count) + chain[i];
+        comprim = comprim + to_string(count) + chain[i];
     }
+
 
     addElement(compresions, index , &comprim);
 }
@@ -84,6 +85,9 @@ void descomRLe(string &chain){
             i++;
         }
     }
+
+    chain = descom;
+
 }
 
 void addElement(string *& compresions, int *index, string *value){
@@ -104,4 +108,50 @@ void addElement(string *& compresions, int *index, string *value){
 
     delete[] compresions;
     compresions = newArray;
+}
+
+void saveData(string type, string *dataToEncryptRLE, int&rows){
+    string nameFile = "";
+    if (type == "decrypt") nameFile = "RLE_decrypt.txt";
+    else nameFile = "RLE_encrypts.txt";
+
+    ofstream file(nameFile, ios::binary);
+
+    for (short i = 0; i < rows; i++){
+        file << dataToEncryptRLE[i] << '\n';
+    }
+
+}
+
+std::string* getDataEncrypt(int &rows){
+    string *compresions = nullptr;
+
+    ifstream File;
+    string line;
+    int count = 0;
+
+    try {
+
+        File.exceptions(ifstream::badbit);
+        File.open("RLE_encrypts.txt");
+
+        if (!File.is_open()){
+            cout << "No se pudo abrir el archivo" << endl;
+            return nullptr;
+        }
+
+        while (getline(File, line)){
+            count++;
+            addElement(compresions, &count, &line);
+        }
+
+        File.close();
+
+    } catch (const ios_base ::failure& e ){
+        cout << "Error al manejar el archivo: " << e.what() << endl;
+    }
+
+    rows = count;
+
+    return compresions;
 }
