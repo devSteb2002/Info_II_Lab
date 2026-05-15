@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(Practica4 main.cpp
-    red.h red.cpp)
+    red.h red.cpp
+    file.h file.cpp)
 
 include(GNUInstallDirs)
 install(TARGETS Practica4
