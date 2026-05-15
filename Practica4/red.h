@@ -19,16 +19,20 @@ class Red{
         void deleteRouter(string key);
         void showRouterByName(string key_);
         void calculateShortWay(string fromKey, string toKey);
+        void setRed(const map<string, map<string, unsigned short> > &newRed);
 
+        ~Red();
 
     private:
-        map<string, map<string, unsigned short>> red = {
-            { "A" , { {"B" , 4}, {"C", 10}, {"D", 5} }},
-            { "B" , { { "A", 4 }, {"D", 1}, { "C", 3}}},
-            { "C" , { {"A", 10}, {"B", 3}, {"D", 2}}},
-            { "D", { { "A", 5 }, {"B", 1}, {"C", 2}}},
-            { "E", { { "D" , 4}}}
-        };
+        map<string, map<string, unsigned short>> red;
+
+        // map<string, map<string, unsigned short>> red = {
+        //     { "A" , { {"B" , 4}, {"C", 10}, {"D", 5} }},
+        //     { "B" , { { "A", 4 }, {"D", 1}, { "C", 3}}},
+        //     { "C" , { {"A", 10}, {"B", 3}, {"D", 2}}},
+        //     { "D", { { "A", 5 }, {"B", 1}, {"C", 2}}},
+        //     { "E", { { "D" , 4}}}
+        // };
 
          vector<string> waysToKey;
          vector<vector<string>> ways;
