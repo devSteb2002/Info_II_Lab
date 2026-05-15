@@ -152,6 +152,12 @@ int main()
                                 }
 
                                 if (!isNumber) continue;
+
+                                if (stoi(cost) < 0){
+                                    cout << "Solo se permiten numeros positivos, vuelva a intentar." << endl;
+                                    continue;
+                                }
+
                                 break;
                             }
 
@@ -248,7 +254,7 @@ int main()
             //---------------------------------------------------------------------------------------//
             else if (value == 3){
                 cout << "----------------------------------------------" << endl;
-                cout << "    ACTUALIZACION ROUTER"              << endl;
+                cout << "    ELIMINACION ROUTER"              << endl;
                 cout << "----------------------------------------------" << endl;
                 cout << "-------------------------------------" << endl;
                 cout << "  Mostrando routers             " << endl;
@@ -303,13 +309,51 @@ int main()
 
                 cout << endl;
             }
+            //---------------------------------------------------------------------------------------//
+            //                                    OPCION # 5
+            //---------------------------------------------------------------------------------------//
+            else if (value == 5){
+                cout << "----------------------------------------------" << endl;
+                cout << "          CAMINOS "              << endl;
+                cout << "----------------------------------------------" << endl;
+
+
+                string selectedRouterOrigin;
+                string selectedRouterDestiny;
+                bool   isSelectedFirst = false;
+
+                do {
+                    if (!isSelectedFirst){
+                        cout << "Ingrese el router de origin: ";
+                        getline(cin ,selectedRouterOrigin);
+
+                        if (!red->alreadyExistRouter(selectedRouterOrigin)){
+                            cout << "Router no encontrado, vuelva a intentar." << endl;
+                            continue;
+                        }
+
+                        isSelectedFirst = true;
+                    }
+
+                    cout << "Ingrese el router de destino: ";
+                    getline(cin, selectedRouterDestiny);
+
+                    if (!red->alreadyExistRouter(selectedRouterDestiny)){
+                        cout << "Router no encontrado, vuelva a intentar." << endl;
+                        continue;
+                    }
+
+                    break;
+                } while (true);
+
+                red->calculateShortWay(selectedRouterOrigin, selectedRouterDestiny);
+                IsInOption = false;
+            }
+            else {
+                break;
+            }
         }
-
-
-        //red->showRoutters();
-
     } while(true);
-
 
 
     delete red;

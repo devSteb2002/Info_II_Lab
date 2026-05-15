@@ -1,5 +1,6 @@
 #include "red.h"
 
+
 Red::Red() {}
 
 
@@ -61,6 +62,68 @@ void Red::showRouterByName(string key_){
             }
         }
     }
-
-
 }
+
+void Red::calculateShortWay(string fromKey, string toKey){
+
+
+    for (const auto& [key, value] : this->red){ // encontrar los router que lleguen al deseado
+
+        for (const auto& [key_, value_] : this->red[key]){
+            if (key_ == toKey){
+                this->waysToKey.push_back(key);
+                break;
+            }
+        }
+    }
+
+    for (const auto& item_ : this->waysToKey){
+        if (item_ == fromKey){
+            this->ways.push_back({ fromKey, toKey });
+            continue;
+        }
+
+        if (this->red[item_].find(fromKey) != this->red[item_].end()){ // si existe la conexion con el router de origen
+            this->ways.push_back({  fromKey, item_, toKey  });
+        }
+        else {
+            for (const auto& [keyInside, valueInside] : this->red[item_]){
+                if (keyInside == toKey) continue;
+
+                if (this->red[keyInside].find(fromKey) != this->red[keyInside].end()){
+                    this->ways.push_back({ fromKey, keyInside,  item_ , toKey });
+                    break;
+                }
+            }
+        }
+    }
+
+    cout << "Para llegar a " << toKey << "  se tiene " << this->ways.size() <<" caminos." << endl;
+
+    for (unsigned short i = 0; i < this->ways.size(); i++){
+        cout << "Camino #" << (i +1) << ": ";
+
+        unsigned short cost = 0;
+        for (unsigned short c = 0; c < this->ways[i].size(); c++){
+            string key = this->ways[i][c];
+            string nextKey =  (c + 1) >= this->ways[i].size() ? "--{}$%6T" :  this->ways[i][c + 1];
+
+            if (nextKey != "--{}$%6T"){
+                cost += this->red[key][nextKey];
+                cout << key << " ->  ";
+            }else cout << key;
+
+        }
+
+        cout << "    |   Costo: " << cost << endl;
+    }
+
+    // for (const auto& ways: this->ways){
+    //     for (const auto& way: ways){
+    //         cout << way << " ->  ";
+    //     }
+    //     cout << endl;
+
+    // }
+}
+
