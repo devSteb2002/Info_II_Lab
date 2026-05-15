@@ -66,6 +66,9 @@ void Red::showRouterByName(string key_){
 
 void Red::calculateShortWay(string fromKey, string toKey){
 
+    this->waysToKey.clear();
+    vector<vector<string>>().swap(this->ways);
+    this->ways.clear();
 
     for (const auto& [key, value] : this->red){ // encontrar los router que lleguen al deseado
 
@@ -84,7 +87,7 @@ void Red::calculateShortWay(string fromKey, string toKey){
         }
 
         if (this->red[item_].find(fromKey) != this->red[item_].end()){ // si existe la conexion con el router de origen
-            this->ways.push_back({  fromKey, item_, toKey  });
+            if (item_ != toKey)  this->ways.push_back({  fromKey, item_, toKey  });
         }
         else {
             for (const auto& [keyInside, valueInside] : this->red[item_]){
@@ -127,3 +130,13 @@ void Red::calculateShortWay(string fromKey, string toKey){
     // }
 }
 
+void Red::setRed(const map<string, map<string, unsigned short> > &newRed){
+    red = newRed;
+}
+
+Red::~Red(){
+    this->waysToKey.clear();
+    vector<vector<string>>().swap(this->ways);
+    this->ways.clear();
+    map<string, map<string, unsigned short>>().swap(this->red);
+}

@@ -1,5 +1,6 @@
 #include "red.h"
-#include <limits>
+#include "file.h"
+
 using namespace std;
 
 void showOptions();
@@ -13,6 +14,8 @@ int main()
 
 
     Red* red = new Red();
+    File* file = new File(red);
+    file->loadMap();
 
     string option;
     int value;
@@ -357,6 +360,7 @@ int main()
 
 
     delete red;
+    delete file;
 
     return 0;
 }
