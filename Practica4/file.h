@@ -4,6 +4,7 @@
 #include <iostream>
 #include "red.h"
 
+
 using namespace std;
 
 class File{
@@ -12,6 +13,8 @@ class File{
 
         void loadMap();
         void saveMap();
+
+        ~File();
     private:
         Red* red = nullptr;
 

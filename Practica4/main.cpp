@@ -56,9 +56,9 @@ int main()
             }
 
             value = stoi(option);
-            if (value < 1 || value > 6){
+            if (value < 1 || value > 7){
                 cout << endl;
-                cout << "Solo hay 5 opciones, vuelva a intentar." << endl;
+                cout << "Solo hay 7 opciones, vuelva a intentar." << endl;
                 cout << endl;
                 continue;
             }
@@ -352,7 +352,11 @@ int main()
                 red->calculateShortWay(selectedRouterOrigin, selectedRouterDestiny);
                 IsInOption = false;
             }
-            else {
+            else if (value == 6) {
+                file->saveMap();
+                IsInOption = false;
+            }
+            else if (value == 7){
                 break;
             }
         }
@@ -372,5 +376,6 @@ void showOptions(){
     cout << "3.) Eliminar router." << endl;
     cout << "4.) Mostrar router" << endl;
     cout << "5.) Mostrar caminos cortos del router." << endl;
-    cout << "6.) Salir." << endl;
+    cout << "6.) Guardar cambios." << endl;
+    cout << "7.) Salir." << endl;
 }

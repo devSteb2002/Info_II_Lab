@@ -39,12 +39,37 @@ void File::loadMap(){
                 pos = close + 1;
             }
         }
+
+        File.close();
     }
+    else cout << "Problema al abrir el archivo." << endl;
 
     this->red->setRed(red);
+
 }
 
 void File::saveMap(){
+    ofstream File("Red.txt");
 
+    if (File.is_open()){
+        for (const auto& [key, intern] : this->red->getMap()){
+            string Data = "{" + key + ":";
+            for (const auto& [key_, value] : intern){
+                Data += "{" + key_ + ":" + to_string(value) + "},";
+            }
+
+            Data.pop_back();
+            Data += "}";
+
+            File << Data << endl;
+        }
+
+        cout << "Datos guardados correctamente." << endl;
+        File.close();
+    }
+    else cout << "Problema al abrir el archivo." << endl;
 }
 
+File::~File(){
+    this->red = nullptr;
+}

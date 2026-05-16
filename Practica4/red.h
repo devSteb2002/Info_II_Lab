@@ -20,6 +20,7 @@ class Red{
         void showRouterByName(string key_);
         void calculateShortWay(string fromKey, string toKey);
         void setRed(const map<string, map<string, unsigned short> > &newRed);
+        const map<string, map<string, unsigned short>>& getMap() const;
 
         ~Red();
 

@@ -26,6 +26,7 @@ bool Red::alreadyExistRouter(string name){
 
 void Red::addNewRouter(string name){
     this->red[name];
+    this->red[name][name] = 0;
 }
 
 void Red::addLinks(string key,  string name, unsigned short value){
@@ -132,6 +133,10 @@ void Red::calculateShortWay(string fromKey, string toKey){
 
 void Red::setRed(const map<string, map<string, unsigned short> > &newRed){
     red = newRed;
+}
+
+const map<string, map<string, unsigned short>>& Red::getMap() const {
+    return this->red;
 }
 
 Red::~Red(){
